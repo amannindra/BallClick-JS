@@ -12,6 +12,11 @@ p {
   font-size: 20px; /* Roughly equivalent to Tailwind's 2xl */
   line-height: 1; /* Tailwind's leading-tight */
 }
+#canvas {
+  display: block;
+  margin: auto;
+  border: 5px solid black; /* Adds a border around the canvas */
+}
 @media (min-width: 640px) {
   /* sm */
   .text-center-font-display-capitalize-font-bold-text-2xl-sm-text-3xl-md-text-4xl-lg-text-5xl-leading-tight {
@@ -37,4 +42,3 @@ body {
   background-color: rgb(56, 220, 250);
   overflow: hidden;
 }
-

@@ -4,44 +4,51 @@ const Count = document.getElementById("Count");
 
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = window.innerWidth-50;
+canvas.height = window.innerHeight-160;
 console.log(canvas.width, canvas.height);
-const radius = 70;
+let = radiusa = 70;
+let notClick = false;
 let centerX = positionX();
 let centerY = positionY();
 
 function positionX() {
-  return radius + Math.random() * (canvas.width - 2 * radius);
+  return (Math.floor(Math.random() * (canvas.width - radiusa + 100)) + radiusa)-50;
 }
 function positionY() {
-  return radius + Math.random() * (canvas.height - 2 * radius);
+  return (Math.floor((Math.random() * (canvas.height - radiusa + 100)) + radiusa))-160;
 }
 
-function drawCircle(color1) {
+function d(e){
+  centerX = positionX();
+  centerY = positionY();
+  console.log(number);
+  number = number + 1;
+drawCircle("red")}
+
+//setInterval(d, 1000);
+
+function drawCircle(color) {
   c.clearRect(0, 0, canvas.width, canvas.height);
   c.beginPath();
-  c.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-  c.fillStyle = color1;
+  c.arc(centerX, centerY, radiusa, 0, 2 * Math.PI);
+  c.fillStyle = color;
   c.fill();
 }
 
-drawCircle("red");
 console.log(centerX, centerY);
 function hoverCircle(e) {
-  console.log("hoverBackground");
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
+  console.log("hoverBackground");
   const distanceFromCenter = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
-  if (distanceFromCenter <= radius) {
-    console.log("greeeeen");
-    radius = 80;
+  if (distanceFromCenter <= radiusa) {
+    radiusa = 80;
     drawCircle("green");
-    e.target.style.transform = "scale(1.05, 1.05)";
- 
-  } else {
-    radius = 70;
+  }
+  else{
+    radiusa = 70;
     drawCircle("red");
   }
 }
@@ -51,12 +58,23 @@ function newPosition(e) {
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
   const distanceFromCenter = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
-  if (distanceFromCenter <= radius) {
+  if (distanceFromCenter <= radiusa) {
     centerX = positionX();
     centerY = positionY();
+    console.log(canvas.width, canvas.height);
+    console.log(centerX, centerY);
+
     number += 1;
+    notClicked = true;
     drawCircle("red");
   }
 }
+function resizeCanvas(){
+  canvas.width = window.innerWidth-100;
+  canvas.height = window.innerHeight-500;
+}
+
+drawCircle("red");
 canvas.addEventListener("click", newPosition);
-canvas.addEventListener("mousemove", hoverCircle);
+canvas.addEventListener("mousemove", hoverCircle); //hoverCircle(radiusa));
+window.addEventListener("resize", resizeCanvas);
