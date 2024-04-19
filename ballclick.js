@@ -68,6 +68,8 @@ function newPosition(e) {
     notClicked = true;
     drawCircle("red");
   }
+  count += 1;
+  updateCount();
 }
 function resizeCanvas(){
   canvas.width = window.innerWidth-100;
@@ -78,3 +80,27 @@ drawCircle("red");
 canvas.addEventListener("click", newPosition);
 canvas.addEventListener("mousemove", hoverCircle); //hoverCircle(radiusa));
 window.addEventListener("resize", resizeCanvas);
+
+
+let time = 1;
+let count = 0;
+
+window.onload = function () {
+  updateCount();
+  timerFunction(true);
+};
+
+function updateCount(){
+  Count.textContent = "Count: " + count;
+}
+
+function timerFunction(c) {
+  if (c) {
+    setInterval(function () {
+      Timer.innerText = "Timer: " + time;
+      time += 1;
+    }, 1000);
+  } else {
+    return;
+  }
+}
